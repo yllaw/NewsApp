@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_name">News</string>
+    <string name="news_reminder_notification_channel">News Reminder</string>
+</resources>
