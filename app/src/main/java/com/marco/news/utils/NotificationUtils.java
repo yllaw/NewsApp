@@ -36,6 +36,14 @@ public class NotificationUtils {
                     NotificationManager.IMPORTANCE_HIGH);
             notificationManager.createNotificationChannel(notificationChannel);
         }
+
+        Intent cancelIntent = new Intent(context, NotificationCancelReciever.class);
+        cancelIntent.putExtra("newsReminderId", NEWS_REMINDER_ID);
+
+        PendingIntent cancelBtPendingIntent = PendingIntent.getBroadcast(context, 0, cancelIntent, 0);
+
+
+
         Log.d(TAG, "notify user");
         NotificationCompat.Builder notificationBuilder = new NotificationCompat.Builder(context, NEWS_REMINDER_CHANNEL_ID)
                 .setColor(ContextCompat.getColor(context, R.color.colorPrimary))
@@ -46,6 +54,7 @@ public class NotificationUtils {
                 .setStyle(new NotificationCompat.BigTextStyle())
                 .setDefaults(Notification.DEFAULT_VIBRATE)
                 .setContentIntent(contentIntent(context))
+                .addAction(R.drawable.ic_close_black_24dp, "Dismiss", cancelBtPendingIntent)
                 .setAutoCancel(true);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) {
             notificationBuilder.setPriority(NotificationCompat.PRIORITY_HIGH);

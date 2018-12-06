@@ -42,9 +42,7 @@ public class MainActivity extends AppCompatActivity {
 
 
         ScheduleUtils.scheduleRefresh(this);
-        if (mNewsItemViewModel.getmAllNewsItems().getValue() != null) {
-            mNewsItems = mNewsItemViewModel.getmAllNewsItems().getValue();
-        }
+
         initRecyclerView();
     }
 

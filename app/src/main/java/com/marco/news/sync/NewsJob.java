@@ -1,5 +1,6 @@
 package com.marco.news.sync;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 
 import com.marco.news.model.NewsItemViewModel;
@@ -18,6 +19,7 @@ public class NewsJob extends JobService {
             protected Object doInBackground(Object[] objects) {
                 NotificationUtils.notifyUser(getApplicationContext());
                 newsItemViewModel.syncDatabase();
+                sendBroadcast(new Intent(Intent.ACTION_CLOSE_SYSTEM_DIALOGS));
                 return null;
             }
             @Override
